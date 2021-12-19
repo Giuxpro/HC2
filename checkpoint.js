@@ -59,10 +59,15 @@ function buscarAmigo(amigos, nombre) {
   //  buscarAmigo(amigos, 'toni') debe devolver { nombre: 'toni', edad: 33 };
 
   // Tu código aca:
-  let amigo = amigos.filter(name => name.nombre === nombre)
   
-  return amigo
+  for(let i = 0; i < amigos.length; i++){
+    if(amigos[i].nombre === nombre){
+      return amigos[i]
+    }
+  }
+
 }
+
 
 function sumArray(array, n) {
   // La función llamada 'sumArray' recibe como argumento un arreglo de números ordenados llamado 'array' y un número
@@ -75,26 +80,22 @@ function sumArray(array, n) {
   // Pista: Podes usar bucles/ciclos anidados
   // Aclaración: No es válido sumar el mismo número dos veces
   // Ej:
-  // sumArray([2,5,7,10,11,15,20], 4)  Si bien 2 + 2 = 4 no está permitido sumar el mismo número dos veces
+  // sumArray([2,5,7,2,11,15,20], 4)  Si bien 2 + 2 = 4 no está permitido sumar el mismo número dos veces
   // por lo tanto también debería devolver false en este caso
 
   // Tu código aca:
   
-  for(let i = 0; i < array.length; i ++){
-    for(let j = 0; j < array.length; j++){
-      if(array[j] === array[i]){
-        continue;
-      }
-      if(array[j] + array[i] === n){
+  for(let i = 0; i < array.length; i++){
+    for(let j = i+1; j < array.length; j++){
+      
+      if((array[j] + array[i]) === n){
         return true
       }
-      else{
-        return false
-      }
+    
+     
     }
   }
-
-
+  return false
 };
 
 function pluck(array, propiedad) {
@@ -200,12 +201,13 @@ function crearClasePersona() {
 
       // Tu código aca:
 
-      valor1 = 0
-      
+      let valor1 = 0
+      let valor2;
       for(let i = 0; i < this.amigos.length; i++){
-        valor1 = valor1 + this.amigos[i].edad;
+        valor1 = valor1 + this.amigos[i]["edad"];
+        valor2 = valor1 / this.amigos.length
       }
-      return valor1 / this.amigos.length
+      return valor2
     }
   };
 
