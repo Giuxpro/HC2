@@ -12,6 +12,20 @@ function menorMayor(numeros) {
   // y 15 es el número más grande (mayor) dentro del arreglo [4, 6, 1, 7, 15]
 
   // Tu código aca:
+  let newArray = [];
+  let numMenor = numeros[0]
+  let numMayor = numeros[0]
+  for(let i = 0; i < numeros.length; i++){
+    if(numMenor > numeros[i]){
+      numMenor = numeros[i];
+    }
+    if(numMayor < numeros[i]){
+      numMayor = numeros[i];
+    }
+  }
+  newArray.push(numMenor);
+  newArray.push(numMayor);
+  return newArray;
 
 }
 
@@ -23,6 +37,16 @@ function stringMasLarga(strings) {
   // stringMasLarga(['JavaScript', 'HTML', 'CSS']); debe retornar 'JavaScript'
 
   // Tu código aca
+  let palabraMasLarga = strings[0];
+  for(let i = 0; i < strings.length; i++){
+    if(palabraMasLarga.length < strings[i].length){
+      palabraMasLarga = strings[i]
+    }
+  }
+  return palabraMasLarga;
+
+
+
 }
 
 function buscarAmigo(amigos, nombre) {
@@ -35,7 +59,9 @@ function buscarAmigo(amigos, nombre) {
   //  buscarAmigo(amigos, 'toni') debe devolver { nombre: 'toni', edad: 33 };
 
   // Tu código aca:
+  let amigo = amigos.filter(name => name.nombre === nombre)
   
+  return amigo
 }
 
 function sumArray(array, n) {
@@ -53,6 +79,20 @@ function sumArray(array, n) {
   // por lo tanto también debería devolver false en este caso
 
   // Tu código aca:
+  
+  for(let i = 0; i < array.length; i ++){
+    for(let j = 0; j < array.length; j++){
+      if(array[j] === array[i]){
+        continue;
+      }
+      if(array[j] + array[i] === n){
+        return true
+      }
+      else{
+        return false
+      }
+    }
+  }
 
 
 };
@@ -67,7 +107,12 @@ function pluck(array, propiedad) {
   // Pista: es una buena oportunidad para usar map.
 
   // Tu código acá:
-
+  let newArray = [];
+  array.map(function(productos){
+       newArray.push(productos[propiedad])
+  })
+  
+  return newArray
 }
 
 // =======================================================================
@@ -80,6 +125,10 @@ function crearClasePersona() {
       // Inicializar las propiedades de la persona con los valores recibidos como argumento
 
       // Tu código aca:
+      this.nombre = nombre,
+      this.edad = edad,
+      this.hobbies = hobbies,
+      this.amigos = amigos
 
     }
 
@@ -89,6 +138,14 @@ function crearClasePersona() {
       // No debe retornar nada.
 
       // Tu código aca:
+      let obj = {
+        nombre:nombre,
+        edad:edad
+      }
+     this.amigos.push(obj)
+
+
+      
 
     }
 
@@ -97,6 +154,7 @@ function crearClasePersona() {
       // No debe retornar nada.
 
       // Tu código aca:
+      this.hobbies.push(hobby)
 
     }
     getFriends() {
@@ -107,6 +165,11 @@ function crearClasePersona() {
       // persona.getFriends() debería devolver ['martin', 'toni']
 
       // Tu código aca:
+      let newArray = []
+      this.amigos.forEach(element => {
+        newArray.push(element.nombre)
+      });
+      return newArray
 
     }
 
@@ -116,6 +179,7 @@ function crearClasePersona() {
       // persona.getHobbies() debe devolver ['correr', 'dormir', 'nadar']
 
       // Tu código aca:
+       return this.hobbies
 
     }
 
@@ -136,6 +200,12 @@ function crearClasePersona() {
 
       // Tu código aca:
 
+      valor1 = 0
+      
+      for(let i = 0; i < this.amigos.length; i++){
+        valor1 = valor1 + this.amigos[i].edad;
+      }
+      return valor1 / this.amigos.length
     }
   };
 
